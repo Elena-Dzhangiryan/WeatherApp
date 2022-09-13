@@ -70,3 +70,22 @@ li:first-letter {
 a {
   text-decoration: none;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  color: #31879c;
+}
+
+.weather-forecast-temperature {
+  font-size: 13px;
+  color: #0b5264;
+}
+
+.weather-forecast-temperature-max {
+  font-weight: bold;
+}
