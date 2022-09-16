@@ -66,8 +66,8 @@ li:first-letter {
   border: #0b3742;
 }
 
-.weather-app .col-8 {
-  padding-left: 0;
+.weather-app .col-7 {
+  padding: 0;
 }
 
 .weather-temperature .units {
