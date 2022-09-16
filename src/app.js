@@ -75,11 +75,32 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
+function displayPhoto(response) {
+  let url = response.data.results[0].urls.small;
+  let a = 0;
+  let photoElement = document.querySelector("#background");
+
+  for (let i = 0; i < response.data.results.length; i++) {
+    if (response.data.results[i].likes > a) {
+      a = response.data.results[i].likes;
+      url = response.data.results[i].urls.small;
+    }
+  }
+
+  url = response.data.results[0].urls.small;
+
+  photoElement.setAttribute("src", url);
+}
+
 function search(city) {
   let apiKey = "ffea44f22f640d82b958bd5488b2f08a";
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
+
+  let apiUrl2 = `https://api.unsplash.com/search/photos/?client_id=FZppaCoF0c53Rkm5-snMeY87flORmWuYE1IVtpM7urM&page=1&query=${city}&orientation=portrait&per_page=50`;
+
+  axios.get(apiUrl2).then(displayPhoto);
 }
 
 function handleSubmit(event) {
