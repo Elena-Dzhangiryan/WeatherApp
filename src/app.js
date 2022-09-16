@@ -22,33 +22,62 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `   
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `   
         <div class="col-2">
-          <div class="weather-forecast-date">${day}</div>
+          <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+         
           <img
-            src="http://openweathermap.org/img/wn/04n@2x.png"
+            src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png"
             alt="Clear"
             width="42"
           />
           <div class="weather-forecast-temperature">
-            <span class="weather-forecast-temperature-max">18°</span>
-            <span class="weather-forecast-temperature-min">12°</span>
+            <span class="weather-forecast-temperature-max">${Math.round(
+              forecastDay.temp.max
+            )}°</span>
+            <span class="weather-forecast-temperature-min">${Math.round(
+              forecastDay.temp.min
+            )}°</span>
           </div>
         </div>
       
       `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+
+  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -67,25 +96,27 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  dateElement.innerHTML = formatDate(response.data.dt + 1000);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function displayPhoto(response) {
   let url = response.data.results[0].urls.small;
-  let a = 0;
+  //let a = 0;
   let photoElement = document.querySelector("#background");
 
-  for (let i = 0; i < response.data.results.length; i++) {
-    if (response.data.results[i].likes > a) {
-      a = response.data.results[i].likes;
-      url = response.data.results[i].urls.small;
-    }
-  }
+  //for (let i = 0; i < response.data.results.length; i++) {
+  //if (response.data.results[i].likes > a) {
+  //a = response.data.results[i].likes;
+  //url = response.data.results[i].urls.small;
+  //}
+  //}
 
   url = response.data.results[0].urls.small;
 
@@ -93,12 +124,13 @@ function displayPhoto(response) {
 }
 
 function search(city) {
-  let apiKey = "ffea44f22f640d82b958bd5488b2f08a";
+  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 
-  let apiUrl2 = `https://api.unsplash.com/search/photos/?client_id=FZppaCoF0c53Rkm5-snMeY87flORmWuYE1IVtpM7urM&page=1&query=${city}&orientation=portrait&per_page=50`;
+  let apiUrl2 = `https://api.unsplash.com/search/photos/?client_id=FZppaCoF0c53Rkm5-snMeY87flORmWuYE1IVtpM7urM&page=1&query=${city}&orientation=landscape`;
+  //&per_page=50
 
   axios.get(apiUrl2).then(displayPhoto);
 }
@@ -141,6 +173,4 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-search("Kyiv");
-
-displayForecast();
+search("Lisbon");

@@ -89,3 +89,7 @@ a {
 .weather-forecast-temperature-max {
   font-weight: bold;
 }
+
+img {
+  max-width: 600px;
+}
