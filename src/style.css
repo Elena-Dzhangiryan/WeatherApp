@@ -3,7 +3,7 @@ body {
   min-width: 320px;
   max-width: 400px;
   max-height: 800px;
-  margin: 30px auto;
+  margin: 15px auto;
 
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -35,8 +35,8 @@ li:first-letter {
 }
 
 .weather-app-wrapper {
-  max-width: 600px;
-  margin: 30px auto;
+  max-width: 400px;
+  margin: 15px auto;
 }
 
 .weather-app {
@@ -60,6 +60,11 @@ li:first-letter {
   font-size: 60px;
   line-height: 1;
   font-weight: 400;
+}
+
+.weather-app .btn {
+  background: #31879c;
+  border: #0b3742;
 }
 
 .weather-temperature .units {
