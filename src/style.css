@@ -1,7 +1,7 @@
 body {
   min-width: 320px;
   max-width: 400px;
-  max-height: 800px;
+  max-height: 600px;
   margin: 15px auto;
 
   font-family: Arial, Helvetica, sans-serif;
@@ -90,6 +90,8 @@ a {
 .weather-forecast {
   margin-top: 20px;
   text-align: center;
+  position: relative;
+  bottom: -145px;
 }
 
 .weather-forecast-date {
@@ -106,6 +108,8 @@ a {
   font-weight: bold;
 }
 
-img {
-  max-width: 600px;
+.background {
+  opacity: 0.4;
+  position: relative;
+  top: -385px;
 }
