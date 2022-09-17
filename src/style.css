@@ -110,6 +110,10 @@ a {
 
 .background {
   opacity: 0.4;
+  max-width: 50%;
+  height: auto;
   position: relative;
   top: -385px;
+
+  display: block;
 }
