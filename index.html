@@ -21,6 +21,7 @@
     <div class="container">
       <div class="weather-app-wrapper">
       <div class="weather-app">
+        
         <form id="search-form" class="mb-3">
           <div class="row">
             <div class="col-8">
@@ -41,55 +42,64 @@
           </div>
           </div>
           </form>
+
         <div class="overview">
-    <h1 id="city"></h1>
-    <ul>
-      <li id="date">
-      </li>
-      <li class="weather-description" id="description">
-      </li>
-    </ul>
-    </div>
+        
+        <div class="current-place">
+        <div class="row">
+          <div class="col-6">
+              <h1 id="city"></h1>
+              <ul>
+                 <li id="date"></li>
+              </ul>
+          </div>  
+          <div class="col-6">
+            <img src=""
+            alt="Cloudy" 
+            id="icon" />
+          </div>  
+        </div>
+        </div>
+            
     <div class="row">
-      <div class="col-7">
+      <div class="col-6">
         <div class="d-flex weather-temperature">
-        <img src=""
-        alt="Cloudy" 
-        id="icon"
-        class="float-left"/>
-        <div class="float-left">
+          <div class="float-left">
         <strong id="temperature"></strong>
         <span class="units">°C</span>
-        </div>
+          </div>
         </div>
       </div>
-<div class="col-5">
-  <ul>
-   
-    <li>
+      <div class="col-6">
+      <ul>
+      <li class="weather-description" id="description"></li>
+      <li>
       Humidity: <span id="humidity"></span>%
-    </li>
-    <li>
+      </li>
+      <li>
       Wind: <span id="wind"></span> m/h
-    </li>
-  </ul>
-</div>
+      </li>
+      </ul>
     </div>
-    <div class="weather-forecast"
-    id="forecast">
+    </div>
+    </div>
     
-    </div>
-  </div> 
-<small>
-     <a href="https://github.com/Elena-Dzhangiryan/WeatherApp" target="_blank" > Open-source code</a>, by Elena Dzhangiryan
-    </small>  
-    </div>
-
     <div class="background-wrapper">
         <img id="background" />
     </div>
+    
+    <div class="weather-forecast"
+    id="forecast">
+    </div>
 
-</div>
+  </div> 
+    
+    <small>
+     <a href="https://github.com/Elena-Dzhangiryan/WeatherApp" target="_blank" > Open-source code</a>, by Elena Dzhangiryan
+    </small>  
+
+    </div>
+    </div>
 
     <script src="src/app.js"></script>
   </body>
