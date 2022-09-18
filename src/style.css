@@ -54,17 +54,13 @@ li:first-letter {
 }
 
 .overview img {
-  display: inline;
-  margin-right: 5px;
-  height: 128px;
-  width: 128px;
-  position: absolute;
-  top: 76px;
-  left: 570px;
+  width: 100px;
+  position: relative;
+  top: -15px;
 }
 
 .current-place {
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
 .weather-temperature strong {
